@@ -1,20 +1,31 @@
 import React from "react";
 import { Card } from "semantic-ui-react";
+import {useState} from 'react'
 
-function PokemonCard() {
+function PokemonCard({pokemon}) {
+
+  const [pokePic,setPokePic] = useState(true)
+
+  function handleClick() {
+    setPokePic(!pokePic)
+}
+
   return (
     <Card>
-      <div>
+      <div onClick={handleClick}>
         <div className="image">
-          <img alt="oh no!" />
+        {pokePic ? 
+        <img alt="oh no!" src={pokemon.sprites.front}/> :
+        <img alt="oh no!" src={pokemon.sprites.back}/>
+        }
         </div>
         <div className="content">
-          <div className="header">POKEMON NAME HERE</div>
+          <div className="header">{pokemon.name}</div>
         </div>
         <div className="extra content">
           <span>
             <i className="icon heartbeat red" />
-            POKEMON HP HERE hp
+            {pokemon.hp} HP
           </span>
         </div>
       </div>
